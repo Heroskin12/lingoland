@@ -1,19 +1,32 @@
 import React from "react";
 
-const SubmissionFormPresentational = ({ formData, onChangeHandler, onSubmitHandler }) => {
-
+const SubmissionFormPresentational = ({
+  formData,
+  onChangeHandler,
+  onSubmitHandler,
+}) => {
   return (
     <form onSubmit={onSubmitHandler}>
       <div className="formGroup">
-        <label htmlFor="name">Your Name</label>
-        <input type="text" name="name" value={formData.name} onChange={onChangeHandler} />
+        <label htmlFor="name">Text Name</label>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={onChangeHandler}
+        />
       </div>
       <div className="formGroup">
-        <label htmlFor="age">Your Age</label>
-        <input type="number" name="age" value={formData.age} onChange={onChangeHandler} />
+        <label htmlFor="age">Student Age</label>
+        <input
+          type="number"
+          name="age"
+          value={formData.age}
+          onChange={onChangeHandler}
+        />
       </div>
       <div className="formGroup">
-        <label htmlFor="level">Your Level</label>
+        <label htmlFor="level">Student Level</label>
         <select name="level" value={formData.level} onChange={onChangeHandler}>
           <option value="A1">Beginner</option>
           <option value="A2">Intermediate</option>
@@ -25,7 +38,11 @@ const SubmissionFormPresentational = ({ formData, onChangeHandler, onSubmitHandl
       </div>
       <div className="formGroup">
         <label htmlFor="language">Your Language</label>
-        <select name="language" value={formData.language} onChange={onChangeHandler}>
+        <select
+          name="language"
+          value={formData.language}
+          onChange={onChangeHandler}
+        >
           <option value="english">English</option>
           <option value="french">French</option>
           <option value="german">German</option>
