@@ -16,6 +16,7 @@ const SubmissionFormContainer = () => {
   }, [formData]);
 
   const getNewText = async () => {
+    console.log("Awaiting response...");
     const client = new OpenAI({
       apiKey: import.meta.env.VITE_OPENAI_API_KEY,
       dangerouslyAllowBrowser: true,
@@ -36,8 +37,13 @@ const SubmissionFormContainer = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
     console.log("In submit handler");
-    const result = await getNewText();
-    console.log("Generated text:", result);
+    const validated = validateForm();
+    if (validated) {
+      const result = await getNewText();
+      console.log("Generated text:", result);
+    } else {
+      alert("Form validation failied. Please don't leave any field empty.");
+    }
   };
 
   const changeHandler = (event) => {
@@ -46,6 +52,19 @@ const SubmissionFormContainer = () => {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const validateForm = () => {
+    const { name, age } = formData;
+    if (!name || !age) {
+      alert("Please fill in all fields.");
+      return false;
+    }
+    if (isNaN(age) || age <= 0) {
+      alert("Please enter a valid age.");
+      return false;
+    }
+    return true;
   };
 
   return (
